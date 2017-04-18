@@ -20,8 +20,9 @@ int	main(int ac, char **av)
 	{
 		mlx = (t_m*)(malloc(sizeof(t_m)));
 		frac_mlx_setup(mlx);
+//		frac_julia(mlx);
+		frac_mandelbrot(mlx);
 		frac_first_draw(mlx);
-		frac_julia(mlx);
 		mlx_hook(mlx->win, 2, 5, &frac_key_core, &mlx);
 		mlx_loop(mlx->ptr);
 	}

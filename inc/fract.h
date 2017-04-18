@@ -18,6 +18,9 @@
 # include "libft.h"
 # include "get_next_line.h"
 
+
+#include <stdio.h>
+
 //# include <fcntl.h>
 
 # define TRUE 1
@@ -54,6 +57,16 @@ typedef struct			s_m
 	size_t				str_size;
 }						t_m;
 
+typedef struct			s_rgba
+{
+	unsigned char		rgba[5];
+}						t_rgba;
+
+typedef struct			s_hsv
+{
+	double				hsv[3];
+}						t_hsv;
+
 /*
 ** Mlx.
 */
@@ -84,5 +97,9 @@ void					frac_ui(t_m *mlx);
 */
 
 void					frac_julia(t_m *mlx);
+void					frac_mandelbrot(t_m *mlx);
+void					frac_put_pixel(int x, int y, int f, t_m *mlx, double newR, double newI);
+t_rgba					hsv_to_rgb(t_hsv hsv);
 
+t_rgba 					MapColor(int i, double r, double c);
 #endif
