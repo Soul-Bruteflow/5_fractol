@@ -20,6 +20,8 @@ void	frac_julia(t_m *mlx)
 		{
 			newRe = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
 			newIm = (y - h / 2) / (0.5 * zoom * h) + moveY;
+			double smoothcolor = exp(-fabs((newRe * newRe + newIm * newIm)));
+
 			int i;
 			for(i = 0; i < maxIterations; i++)
 			{
@@ -27,6 +29,7 @@ void	frac_julia(t_m *mlx)
 				oldIm = newIm;
 				newRe = oldRe * oldRe - oldIm * oldIm + cRe;
 				newIm = 2 * oldRe * oldIm + cIm;
+				smoothcolor += exp(-fabs((newRe * newRe + newIm * newIm)));
 				if((newRe * newRe + newIm * newIm) > 4) break;
 			}
 			int vcolor = 200;
@@ -35,6 +38,6 @@ void	frac_julia(t_m *mlx)
 //			color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i < maxIterations)));
 //			int collor = (i % 122, 255, 255 * (i < maxIterations));
 //			mlx_pixel_put(mlx->ptr, mlx->win, x, y, collor);
-			frac_put_pixel(x, y, i, mlx, newRe, newIm);
+			frac_put_pixel(x, y, i, mlx, newRe, newIm, smoothcolor);
 		}
 }

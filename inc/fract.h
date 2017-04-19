@@ -98,7 +98,7 @@ void					frac_ui(t_m *mlx);
 
 void					frac_julia(t_m *mlx);
 void					frac_mandelbrot(t_m *mlx);
-void					frac_put_pixel(int x, int y, int f, t_m *mlx, double newR, double newI);
+void					frac_put_pixel(int x, int y, int f, t_m *mlx, double newR, double newI, double smoothcolor);
 t_rgba					hsv_to_rgb(t_hsv hsv);
 
 t_rgba 					MapColor(int i, double r, double c);

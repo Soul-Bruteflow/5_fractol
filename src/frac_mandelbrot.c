@@ -29,6 +29,6 @@ void	frac_mandelbrot(t_m *mlx)
 			int vcolor = 0;
 			if (i == maxIterations)
 				vcolor = 200;
-			frac_put_pixel(x, y, i, mlx, newRe, newIm);
+			frac_put_pixel(x, y, i, mlx, newRe, newIm, 0.0);
 		}
 }
