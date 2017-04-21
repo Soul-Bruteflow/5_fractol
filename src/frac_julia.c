@@ -1,43 +1,58 @@
 #include "fract.h"
 
-void	frac_julia(t_m *mlx)
+static void	julia_init(t_frct *frct)
 {
-//	screen(400, 300, 0, "Julia Set");
+	frct->jul = (t_jul*)malloc(sizeof(t_jul));
+	frct->jul->cRe = 0.8;
+	frct->jul->cIm = 0;
+	frct->jul->zoom = 1;
+	frct->jul->moveX = 0;
+	frct->jul->moveY = 0;
+	frct->jul->maxIter = 300;
+	frct->jul->lock = 1;
+	frct->jul->mouse_x = 0;
+	frct->jul->mouse_y = 0;
+}
 
-	double cRe, cIm;
-	double newRe, newIm, oldRe, oldIm;
-	double zoom = 1, moveX = 0, moveY = 0;
-//	ColorRGB color;
-	int h = 900;
-	int w = 1500;
-	int maxIterations = 300;
+void julia_color(t_frct *frct)
+{
+	frct->jul->rgba = (t_rgba*)malloc(sizeof(t_rgba));
+	frct->jul->hsv = (t_hsv*)malloc(sizeof(t_hsv));
+	frct->jul->hsv->hsv[0] = 0.95f + 10 * frct->jul->smoothcol;
+	frct->jul->hsv->hsv[1] = 0.6f;
+	frct->jul->hsv->hsv[2] = 1.0f;
+	*frct->jul->rgba = hsv_to_rgb(*frct->jul->hsv);
+}
 
-
-	cRe = 0.8;
-	cIm = 0;
-	for(int y = 0; y < h; y++)
-		for(int x = 0; x < w; x++)
+void	frac_julia(t_frct *frct)
+{
+	julia_init(frct);
+	frct->jul->y = -1;
+	while(frct->jul->y++ < frct->mlx->height)
+	{
+		frct->jul->x = -1;
+		while(frct->jul->x++ < frct->mlx->width)
 		{
-			newRe = 1.5 * (x - w / 2) / (0.5 * zoom * w) + moveX;
-			newIm = (y - h / 2) / (0.5 * zoom * h) + moveY;
-			double smoothcolor = exp(-fabs((newRe * newRe + newIm * newIm)));
-
-			int i;
-			for(i = 0; i < maxIterations; i++)
+			frct->jul->newRe = 1.5 * (frct->jul->x - frct->mlx->width / 2) / (0.5 * frct->jul->zoom * frct->mlx->width) + frct->jul->moveX;
+			frct->jul->newIm = (frct->jul->y - frct->mlx->height / 2) / (0.5 * frct->jul->zoom * frct->mlx->height) + frct->jul->moveY;
+			frct->jul->smoothcol = exp(-fabs((frct->jul->newRe * frct->jul->newRe + frct->jul->newIm * frct->jul->newIm)));
+			frct->jul->i = -1;
+			while(frct->jul->i++ < frct->jul->maxIter)
 			{
-				oldRe = newRe;
-				oldIm = newIm;
-				newRe = oldRe * oldRe - oldIm * oldIm + cRe;
-				newIm = 2 * oldRe * oldIm + cIm;
-				smoothcolor += exp(-fabs((newRe * newRe + newIm * newIm)));
-				if((newRe * newRe + newIm * newIm) > 4) break;
+				frct->jul->oldRe = frct->jul->newRe;
+				frct->jul->oldIm = frct->jul->newIm;
+				frct->jul->newRe = frct->jul->oldRe * frct->jul->oldRe - frct->jul->oldIm * frct->jul->oldIm + frct->jul->cRe;
+				frct->jul->newIm = 2 * frct->jul->oldRe * frct->jul->oldIm + frct->jul->cIm;
+				frct->jul->smoothcol += exp(-fabs((frct->jul->newRe * frct->jul->newRe + frct->jul->newIm * frct->jul->newIm)));
+				if((frct->jul->newRe * frct->jul->newRe + frct->jul->newIm * frct->jul->newIm) > 4)
+				{
+					break;
+				}
 			}
-			int vcolor = 200;
-			if (i == maxIterations)
-				vcolor = 0;
-//			color = HSVtoRGB(ColorHSV(i % 256, 255, 255 * (i < maxIterations)));
-//			int collor = (i % 122, 255, 255 * (i < maxIterations));
-//			mlx_pixel_put(mlx->ptr, mlx->win, x, y, collor);
-			frac_put_pixel(x, y, i, mlx, newRe, newIm, smoothcolor);
+			julia_color(frct);
+			frac_put_pixel(frct);
+//			free(frct->jul->hsv);
+//			free(frct->jul->rgba);
 		}
+	}
 }

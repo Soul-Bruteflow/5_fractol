@@ -14,17 +14,22 @@
 
 int	main(int ac, char **av)
 {
-	t_m	*mlx;
+	t_frct *frct;
 
 	if (ac == 2)
 	{
-		mlx = (t_m*)(malloc(sizeof(t_m)));
-		frac_mlx_setup(mlx);
-		frac_julia(mlx);
+		frct = (t_frct*)(malloc(sizeof(t_frct)));
+		frct->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
+		frac_mlx_setup(frct);
+		frac_julia(frct);
 //		frac_mandelbrot(mlx);
-		frac_first_draw(mlx);
-		mlx_hook(mlx->win, 2, 5, &frac_key_core, &mlx);
-		mlx_loop(mlx->ptr);
+		frac_first_draw(frct);
+		frct->mouse_x = 0;
+		frct->mouse_y = 0;
+		mlx_mouse_hook(frct->mlx->win, frac_core_mouse, frct);
+		mlx_hook(frct->mlx->win, 6, 0, track_mouse, frct);
+		mlx_hook(frct->mlx->win, 2, 5, frac_core_keyb, frct);
+		mlx_loop(frct->mlx->ptr);
 	}
 	else
 		frac_error(USAGE);

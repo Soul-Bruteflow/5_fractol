@@ -1,42 +1,48 @@
 #include "fract.h"
 
-void	frac_redraw(t_m *mlx)
+void	frac_redraw(t_frct *frct)
 {
-	mlx_clear_window(mlx->ptr, mlx->win);
-	ft_bzero(mlx->str, mlx->str_size);
+	mlx_clear_window(frct->mlx->ptr, frct->mlx->win);
+	ft_bzero(frct->mlx->str, frct->mlx->str_size);
 //	fdf_draw(mlx);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, mlx->imgx, mlx->imgy);
+	mlx_put_image_to_window(frct->mlx->ptr, frct->mlx->win, frct->mlx->img,
+							frct->mlx->imgx, frct->mlx->imgy);
 //	fdf_ui(mlx);
 }
 
-void	frac_first_draw(t_m *mlx)
+void	frac_first_draw(t_frct *frct)
 {
 //	frac_draw(mlx);
-	mlx->win = mlx_new_window(mlx->ptr, mlx->width, mlx->height, "Fractol");
-	if (mlx->win == NULL)
+	frct->mlx->win = mlx_new_window(frct->mlx->ptr, frct->mlx->width,
+									frct->mlx->height, "Fractol");
+	if (frct->mlx->win == NULL)
 		exit(0);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, mlx->imgx, mlx->imgy);
-	frac_ui(mlx);
+	mlx_put_image_to_window(frct->mlx->ptr, frct->mlx->win, frct->mlx->img,
+							frct->mlx->imgx, frct->mlx->imgy);
+	frac_ui(frct);
 }
 
-void	frac_mlx_setup(t_m *mlx)
+void	frac_mlx_setup(t_frct *frct)
 {
-	mlx->imgx = 0;
-	mlx->imgy = 0;
-	mlx->width = WIDTH;
-	mlx->height = HEIGHT;
-	mlx->wcenx = mlx->width / 2;
-	mlx->wceny = mlx->height / 2;
-	mlx->wcurx = mlx->wcenx;
-	mlx->wcury = mlx->wceny;
-	mlx->ptr = mlx_init();
-	if (mlx->ptr == NULL)
+	frct->mlx->imgx = 0;
+	frct->mlx->imgy = 0;
+	frct->mlx->width = WIDTH;
+	frct->mlx->height = HEIGHT;
+	frct->mlx->wcenx = frct->mlx->width / 2;
+	frct->mlx->wceny = frct->mlx->height / 2;
+	frct->mlx->wcurx = frct->mlx->wcenx;
+	frct->mlx->wcury = frct->mlx->wceny;
+	frct->mlx->ptr = mlx_init();
+	if (frct->mlx->ptr == NULL)
 		exit(0);
-	mlx->img = mlx_new_image(mlx->ptr, mlx->width, mlx->height);
-	if (mlx->img == NULL)
+	frct->mlx->img = mlx_new_image(frct->mlx->ptr,
+								   frct->mlx->width, frct->mlx->height);
+	if (frct->mlx->img == NULL)
 		exit(0);
-	mlx->str = mlx_get_data_addr(mlx->img, &mlx->bit, &mlx->line_sz, &mlx->end);
-	if (mlx->str == NULL)
+	frct->mlx->str = mlx_get_data_addr(frct->mlx->img, &frct->mlx->bit,
+									   &frct->mlx->line_sz, &frct->mlx->end);
+	if (frct->mlx->str == NULL)
 		exit(0);
-	mlx->str_size = mlx->width * mlx->height * (mlx->bit / 8);
+	frct->mlx->str_size = (size_t)frct->mlx->width * frct->mlx->height
+						  * (frct->mlx->bit / 8);
 }

@@ -33,29 +33,29 @@
 
 // http://stackoverflow.com/questions/369438/smooth-spectrum-for-mandelbrot-set-rendering
 // alex russel : http://stackoverflow.com/users/2146829/alex-russell
-
-t_rgba MapColor(int i, double r, double c)
-{
-	int di= i;
-	double zn;
-	double hue;
-
-	zn = sqrt(r + c);
-	hue = di + 1.0 - log(log(abs(zn))) / log(2.0);  // 2 is escape radius
-	hue = 0.95 + 20.0 * hue; // adjust to make it prettier
-	// the hsv function expects values from 0 to 360
-	while (hue > 360.0)
-		hue -= 360.0;
-	while (hue < 0.0)
-		hue += 360.0;
-
-	t_rgba	rgb_t;
-	t_hsv	hsv;
-
-	hsv.hsv[0] = hue;
-	hsv.hsv[0] = 0.8;
-	hsv.hsv[0] = 1.0;
-	rgb_t = hsv_to_rgb(hsv);
-
-	return (rgb_t);
-}
+//
+//t_rgba MapColor(int i, double r, double c)
+//{
+//	int di= i;
+//	double zn;
+//	double hue;
+//
+//	zn = sqrt(r + c);
+//	hue = di + 1.0 - log(log(abs(zn))) / log(2.0);  // 2 is escape radius
+//	hue = 0.95 + 20.0 * hue; // adjust to make it prettier
+//	// the hsv function expects values from 0 to 360
+//	while (hue > 360.0)
+//		hue -= 360.0;
+//	while (hue < 0.0)
+//		hue += 360.0;
+//
+//	t_rgba	rgb_t;
+//	t_hsv	hsv;
+//
+//	hsv.hsv[0] = hue;
+//	hsv.hsv[0] = 0.8;
+//	hsv.hsv[0] = 1.0;
+//	rgb_t = hsv_to_rgb(hsv);
+//
+//	return (rgb_t);
+//}

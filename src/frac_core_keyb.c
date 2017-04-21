@@ -1,6 +1,6 @@
 #include "fract.h"
 
-int		frac_key_core(int kcode, t_m *mlx)
+int		frac_core_keyb(int kcode, t_frct *frct)
 {
 	if (kcode == 53)
 		exit(0);
