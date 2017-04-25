@@ -32,6 +32,16 @@
 # define CIM(x) ((x) * 4.0 / HEIGHT - 2)
 
 /*
+** Keys
+*/
+# define ESC 53
+# define SPC 49
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+
+/*
 ** Minilibx
 ** imgx, imgy - upper left corner of image string.
 ** wcenx, wceny - x, y center of the window.
@@ -43,9 +53,10 @@ typedef struct			s_frct
 {
 	struct s_mlx		*mlx;
 	struct s_jul		*jul;
-	int 				lock;
-	int 				mouse_x;
-	int 				mouse_y;
+	int 				run_flag;
+//	int 				lock;
+//	int 				mouse_x;
+//	int 				mouse_y;
 }						t_frct;
 
 typedef struct			s_jul
@@ -128,6 +139,7 @@ void					frac_error(int n);
 ** UI.
 */
 void					frac_ui(t_frct *frct);
+void					frac_redraw_ui(t_frct *frct);
 
 /*
 ** Draw

@@ -24,8 +24,8 @@ int	main(int ac, char **av)
 		frac_julia(frct);
 //		frac_mandelbrot(mlx);
 		frac_first_draw(frct);
-		frct->mouse_x = 0;
-		frct->mouse_y = 0;
+//		frct->mouse_x = 0;
+//		frct->mouse_y = 0;
 		mlx_mouse_hook(frct->mlx->win, frac_core_mouse, frct);
 		mlx_hook(frct->mlx->win, 6, 0, track_mouse, frct);
 		mlx_hook(frct->mlx->win, 2, 5, frac_core_keyb, frct);

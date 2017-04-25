@@ -2,16 +2,22 @@
 
 static void	julia_init(t_frct *frct)
 {
-	frct->jul = (t_jul*)malloc(sizeof(t_jul));
-	frct->jul->cRe = 0.8;
-	frct->jul->cIm = 0;
-	frct->jul->zoom = 1;
-	frct->jul->moveX = 0;
-	frct->jul->moveY = 0;
-	frct->jul->maxIter = 300;
-	frct->jul->lock = 1;
-	frct->jul->mouse_x = 0;
-	frct->jul->mouse_y = 0;
+	if (frct->run_flag == 0)
+	{
+		frct->jul = (t_jul*)malloc(sizeof(t_jul));
+		frct->jul->cRe = 0.8;
+		frct->jul->cIm = 0;
+		frct->jul->zoom = 1;
+		frct->jul->moveX = 0;
+		frct->jul->moveY = 0;
+		frct->jul->maxIter = 50;
+		frct->jul->lock = 1;
+	}
+	else
+	{
+		frct->jul->cRe = (frct->jul->mouse_x) * 4.0 / frct->mlx->width - 2;
+		frct->jul->cIm = (frct->jul->mouse_y) * 4.0 / frct->mlx->height - 2;
+	}
 }
 
 void julia_color(t_frct *frct)
@@ -55,4 +61,6 @@ void	frac_julia(t_frct *frct)
 //			free(frct->jul->rgba);
 		}
 	}
+	if (frct->run_flag == 0)
+		frct->run_flag = 1;
 }

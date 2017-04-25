@@ -4,10 +4,11 @@ void	frac_redraw(t_frct *frct)
 {
 	mlx_clear_window(frct->mlx->ptr, frct->mlx->win);
 	ft_bzero(frct->mlx->str, frct->mlx->str_size);
+	frac_julia(frct);
 //	fdf_draw(mlx);
 	mlx_put_image_to_window(frct->mlx->ptr, frct->mlx->win, frct->mlx->img,
 							frct->mlx->imgx, frct->mlx->imgy);
-//	fdf_ui(mlx);
+	frac_ui(frct);
 }
 
 void	frac_first_draw(t_frct *frct)
@@ -24,6 +25,7 @@ void	frac_first_draw(t_frct *frct)
 
 void	frac_mlx_setup(t_frct *frct)
 {
+	frct->run_flag = 0;
 	frct->mlx->imgx = 0;
 	frct->mlx->imgy = 0;
 	frct->mlx->width = WIDTH;
