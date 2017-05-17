@@ -63,7 +63,7 @@ int	frac_core_mouse(int button, int x, int y, t_frct *frct)
 {
 	if (button == 1)
 	{
-		if (frct->jul->lock == 1)
+		if (frct->jul->lock == 1 || frct->jul->lock == -1)
 		{
 			frct->jul->lock = 0;
 			frac_redraw_ui(frct);

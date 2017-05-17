@@ -4,7 +4,8 @@ void	frac_redraw(t_frct *frct)
 {
 	mlx_clear_window(frct->mlx->ptr, frct->mlx->win);
 	ft_bzero(frct->mlx->str, frct->mlx->str_size);
-	frac_julia(frct);
+	frac_julia_thread_create(frct);
+//	frac_julia(frct);
 //	fdf_draw(mlx);
 	mlx_put_image_to_window(frct->mlx->ptr, frct->mlx->win, frct->mlx->img,
 							frct->mlx->imgx, frct->mlx->imgy);

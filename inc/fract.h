@@ -17,8 +17,9 @@
 # include <mlx.h>
 # include "libft.h"
 # include "get_next_line.h"
+# include <pthread.h>
 
-
+pthread_mutex_t count_mutex;
 #include <stdio.h>
 
 //# include <fcntl.h>
@@ -49,6 +50,10 @@
 ** str_size - size of image string.
 */
 
+typedef struct			s_tred
+{
+}						t_tred;
+
 typedef struct			s_frct
 {
 	struct s_mlx		*mlx;
@@ -61,17 +66,17 @@ typedef struct			s_frct
 
 typedef struct			s_jul
 {
-	double				cRe;
-	double				cIm;
-	double				newRe;
-	double				newIm;
-	double				oldRe;
-	double				oldIm;
-	double				zoom;
-	double				moveX;
-	double				moveY;
+	float				cRe;
+	float				cIm;
+	float				newRe;
+	float				newIm;
+	float				oldRe;
+	float				oldIm;
+	float				zoom;
+	float				moveX;
+	float				moveY;
 	int					maxIter;
-	double				smoothcol;
+	float				smoothcol;
 	int 				x;
 	int 				y;
 	int 				i;
@@ -80,6 +85,9 @@ typedef struct			s_jul
 	int 				lock;
 	int 				mouse_x;
 	int 				mouse_y;
+	pthread_t			*tids;
+//	pthread_attr_t		*attrs;
+	int 				tid;
 }						t_jul;
 
 typedef struct			s_mlx
@@ -145,10 +153,18 @@ void					frac_redraw_ui(t_frct *frct);
 ** Draw
 */
 
-void					frac_julia(t_frct *frct);
+void					*frac_julia(void *arg);
 void					frac_mandelbrot(t_frct *frct);
 void					frac_put_pixel(t_frct *frct);
 t_rgba					hsv_to_rgb(t_hsv hsv);
+
+/*
+** Threads
+*/
+
+void	frac_julia_thread_create(t_frct *frct);
+void	frac_julia_thread_join(t_frct *frct);
+void *julia_thread(void *arg);
 
 t_rgba 					MapColor(int i, double r, double c);
 #endif
