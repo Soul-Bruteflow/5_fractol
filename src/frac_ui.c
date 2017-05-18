@@ -14,7 +14,7 @@ void	frac_ui(t_frct *frct)
 				   20, 740, 0x00FFFFFF, "Controls:");
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
 				   20, 760, 0x00FFFFFF, "Exit: ESC");
-	if(frct->jul->lock == 1)
+	if(frct->lock == 1)
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
 				   20, 700, 0x00FFFFFF, "Lock status: On");
 	else

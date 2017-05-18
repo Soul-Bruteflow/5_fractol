@@ -4,19 +4,19 @@ void	frac_move(int kcode, t_frct *frct)
 {
 	if (kcode == UP)
 	{
-		frct->jul->moveY += 0.0200 / frct->jul->zoom;
+		frct->moveY += 0.0200 / frct->zoom;
 	}
 	if (kcode == DOWN)
 	{
-		frct->jul->moveY -= 0.0200 / frct->jul->zoom;
+		frct->moveY -= 0.0200 / frct->zoom;
 	}
 	if (kcode == LEFT)
 	{
-		frct->jul->moveX += 0.0200 / frct->jul->zoom;
+		frct->moveX += 0.0200 / frct->zoom;
 	}
 	if (kcode == RIGHT)
 	{
-		frct->jul->moveX -= 0.0200 / frct->jul->zoom;
+		frct->moveX -= 0.0200 / frct->zoom;
 	}
 	frac_redraw(frct);
 }

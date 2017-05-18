@@ -18,18 +18,19 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		frct->rgba;
 		frct = (t_frct*)(malloc(sizeof(t_frct)));
 		frct->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
-		frct->jul = (t_jul*)malloc(sizeof(t_jul));
-		frct->jul->rgba = (t_rgba*)malloc(sizeof(t_rgba));
-		frct->jul->hsv = (t_hsv*)malloc(sizeof(t_hsv));
-		frct->jul->lock = -1;
-		frct->jul->cRe = 0.5459;
-		frct->jul->cIm = 0.0896;
-		frct->jul->zoom = 1;
-		frct->jul->moveX = 0;
-		frct->jul->moveY = 0;
-		frct->jul->maxIter = 50;
+//		frct->jul = (t_jul*)malloc(sizeof(t_jul));
+//		frct->rgba = (t_rgba)malloc(sizeof(t_rgba));
+//		frct->hsv = (t_hsv)malloc(sizeof(t_hsv));
+		frct->lock = -1;
+		frct->cRe = 0.5459;
+		frct->cIm = 0.0896;
+		frct->zoom = 1;
+		frct->moveX = 0;
+		frct->moveY = 0;
+		frct->maxIter = 50;
 		frac_mlx_setup(frct);
 
 		frac_julia_thread_create(frct);

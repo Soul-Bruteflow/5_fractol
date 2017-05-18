@@ -7,11 +7,11 @@ void	frac_julia_thread_create(t_frct *frct)
 
 	threads = (pthread_t*)malloc(frct->mlx->height * sizeof(pthread_t));
 
-	for (frct->jul->tid = 0; frct->jul->tid < frct->mlx->height; frct->jul->tid++)
+	for (frct->tid = 0; frct->tid < frct->mlx->height; frct->tid++)
 	{
 		t_frct *arg = (t_frct*)malloc(sizeof(t_frct));
 		memcpy(arg, frct, sizeof(t_frct));
-		pthread_create(&threads[frct->jul->tid], NULL, frac_julia, arg);
+		pthread_create(&threads[frct->tid], NULL, frac_julia, arg);
 	}
 
 	for (i = 0; i < frct->mlx->height; i++)

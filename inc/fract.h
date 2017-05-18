@@ -19,7 +19,7 @@
 # include "get_next_line.h"
 # include <pthread.h>
 
-pthread_mutex_t count_mutex;
+//pthread_mutex_t count_mutex;
 #include <stdio.h>
 
 //# include <fcntl.h>
@@ -54,18 +54,22 @@ typedef struct			s_tred
 {
 }						t_tred;
 
+typedef struct			s_rgba
+{
+	unsigned char		rgba[5];
+}						t_rgba;
+
+typedef struct			s_hsv
+{
+	double				hsv[3];
+}						t_hsv;
+
 typedef struct			s_frct
 {
 	struct s_mlx		*mlx;
-	struct s_jul		*jul;
+//	struct s_jul		*jul;
 	int 				run_flag;
-//	int 				lock;
-//	int 				mouse_x;
-//	int 				mouse_y;
-}						t_frct;
 
-typedef struct			s_jul
-{
 	float				cRe;
 	float				cIm;
 	float				newRe;
@@ -80,15 +84,45 @@ typedef struct			s_jul
 	int 				x;
 	int 				y;
 	int 				i;
-	struct s_rgba		*rgba;
-	struct s_hsv		*hsv;
+	struct s_rgba		rgba;
+	struct s_hsv		hsv;
 	int 				lock;
 	int 				mouse_x;
 	int 				mouse_y;
 	pthread_t			*tids;
 //	pthread_attr_t		*attrs;
 	int 				tid;
-}						t_jul;
+
+//	int 				lock;
+//	int 				mouse_x;
+//	int 				mouse_y;
+}						t_frct;
+
+//typedef struct			s_jul
+//{
+//	float				cRe;
+//	float				cIm;
+//	float				newRe;
+//	float				newIm;
+//	float				oldRe;
+//	float				oldIm;
+//	float				zoom;
+//	float				moveX;
+//	float				moveY;
+//	int					maxIter;
+//	float				smoothcol;
+//	int 				x;
+//	int 				y;
+//	int 				i;
+//	struct s_rgba		*rgba;
+//	struct s_hsv		*hsv;
+//	int 				lock;
+//	int 				mouse_x;
+//	int 				mouse_y;
+//	pthread_t			*tids;
+////	pthread_attr_t		*attrs;
+//	int 				tid;
+//}						t_jul;
 
 typedef struct			s_mlx
 {
@@ -109,16 +143,6 @@ typedef struct			s_mlx
 	int					wcury;
 	size_t				str_size;
 }						t_mlx;
-
-typedef struct			s_rgba
-{
-	unsigned char		rgba[5];
-}						t_rgba;
-
-typedef struct			s_hsv
-{
-	double				hsv[3];
-}						t_hsv;
 
 
 /*

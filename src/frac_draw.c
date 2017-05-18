@@ -51,10 +51,10 @@ void	frac_put_pixel(t_frct *frct)
 //	rgb[1] = (0 - 79) * con_in + 79;
 //	rgb[2] = (0 - 91) * con_in + 91;
 
-	i = (size_t)(frct->jul->y * frct->mlx->line_sz +
-			(frct->jul->x * (frct->mlx->bit / 8)));
-	if (i < frct->mlx->str_size && frct->jul->x > 0 &&
-			frct->jul->x < frct->mlx->width)
+	i = (size_t)(frct->y * frct->mlx->line_sz +
+			(frct->x * (frct->mlx->bit / 8)));
+	if (i < frct->mlx->str_size && frct->x > 0 &&
+			frct->x < frct->mlx->width)
 	{
 //		rgb[0] = (unsigned char)(2 * (1 - con_in) * (con_in * con_in * con_in) * (255 - 127) + 127);
 //		rgb[1] = (unsigned char)(4 * (1 - con_in * con_in) * (con_in * con_in) * (255 - 127) + 127);
@@ -92,15 +92,15 @@ void	frac_put_pixel(t_frct *frct)
 //		rgb[2] = b;
 		if (frct->mlx->end == 1)
 		{
-			frct->mlx->str[i] = frct->jul->rgba->rgba[0];
-			frct->mlx->str[i + 1] = frct->jul->rgba->rgba[1];
-			frct->mlx->str[i + 2] = frct->jul->rgba->rgba[2];
+			frct->mlx->str[i] = frct->rgba.rgba[0];
+			frct->mlx->str[i + 1] = frct->rgba.rgba[1];
+			frct->mlx->str[i + 2] = frct->rgba.rgba[2];
 		}
 		else if (frct->mlx->end == 0)
 		{
-			frct->mlx->str[i] = frct->jul->rgba->rgba[2];
-			frct->mlx->str[i + 1] = frct->jul->rgba->rgba[1];
-			frct->mlx->str[i + 2] = frct->jul->rgba->rgba[0];
+			frct->mlx->str[i] = frct->rgba.rgba[2];
+			frct->mlx->str[i + 1] = frct->rgba.rgba[1];
+			frct->mlx->str[i + 2] = frct->rgba.rgba[0];
 		}
 	}
 }
