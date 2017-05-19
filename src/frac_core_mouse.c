@@ -6,8 +6,6 @@ int		track_mouse(int x, int y, t_frct *frct)
 	{
 		frct->cRe = x * 4.0f / WIDTH - 2;
 		frct->cIm = y * 4.0f / HEIGHT - 2;
-//		frct->mouse_x = x;
-//		frct->mouse_y = y;
 		frac_redraw(frct);
 	}
 	return (0);
@@ -39,17 +37,27 @@ void	frac_zoom_in(t_frct *frct, int x, int y)
 		ad_y = y - 450;
 		percentage_y = (float)ad_y * (float)100 / (float)frct->mlx->wceny;
 	}
-	percentage_x = (float)(1.5 / frct->zoom) * percentage_x / 100.0f;
+	percentage_x = (float)(1.01 / frct->zoom) * percentage_x / 100.0f;
 	percentage_y = (float)(1.0 / frct->zoom) * percentage_y / 100.0f;
 	if (x < frct->mlx->wcenx && y < frct->mlx->wceny)
 	{
-		frct->moveX -= percentage_x;
-		frct->moveY -= percentage_y;
+		frct->moveX -= (percentage_x / 5);
+		frct->moveY -= (percentage_y / 5);
 	}
 	if (x > frct->mlx->wcenx && y > frct->mlx->wceny)
 	{
-		frct->moveX += percentage_x;
-		frct->moveY += percentage_y;
+		frct->moveX += (percentage_x / 5);
+		frct->moveY += (percentage_y / 5);
+	}
+	if (x > frct->mlx->wcenx && y < frct->mlx->wceny)
+	{
+		frct->moveX += (percentage_x / 5);
+		frct->moveY -= (percentage_y / 5);
+	}
+	if (x < frct->mlx->wcenx && y > frct->mlx->wceny)
+	{
+		frct->moveX -= (percentage_x / 5);
+		frct->moveY += (percentage_y / 5);
 	}
 	frct->zoom *= 1.090;
 	frac_redraw(frct);
@@ -76,9 +84,8 @@ int	frac_core_mouse(int button, int x, int y, t_frct *frct)
 			frac_redraw_ui(frct);
 		}
 	}
-	if (button == 3)
+	if (button == 4)
 	{
-		printf("1\n");
 		frac_zoom_in(frct, x , y);
 	}
 	if (button == 5)
