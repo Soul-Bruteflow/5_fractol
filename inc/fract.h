@@ -91,6 +91,11 @@ typedef struct			s_frct
 	float				cI;
 	float				zR;
 	float				zI;
+	float 				rootX;
+	float 				rootY;
+	float 				sqr_zR;
+	float 				sqr_zI;
+	float 				sq;
 	float				tmp;
 	float				zoom;
 	float				moveX;

@@ -17,10 +17,10 @@ static void base_values(t_frct *f)
 
 static void escape_and_color(t_frct *f)
 {
-	f->tmp = f->zR * f->zR - f->zI * f->zI + f->cR;
+	f->smooth_col += exp(-fabs(f->sq));
+	f->tmp = f->sqr_zR - f->sqr_zI + f->cR;
 	f->zI = f->zR * f->zI * 2 + f->cI;
 	f->zR = f->tmp;
-	f->smooth_col += exp(-fabs((f->zR * f->zR + f->zI * f->zI)));
 }
 
 void	*julia_worker(void *arg)
@@ -34,12 +34,9 @@ void	*julia_worker(void *arg)
 		{
 			base_values(f);
 			f->i = -1;
-			while(f->i++ < f->maxIter)
-			{
+			while((f->sq = (f->sqr_zR = f->zR * f->zR) +
+					(f->sqr_zI = f->zI * f->zI)) <= 4 && f->i++ < f->maxIter)
 				escape_and_color(f);
-				if(f->zR * f->zR + f->zI * f->zI >= 4)
-					break;
-			}
 			julia_color(f);
 			fractal_put_pixel(f);
 		}

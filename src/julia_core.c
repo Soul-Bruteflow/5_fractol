@@ -25,5 +25,5 @@ void julia_default(t_frct *frct)
 	frct->zoom = 1;
 	frct->moveX = 0;
 	frct->moveY = 0;
-	frct->maxIter = 50;
+	frct->maxIter = 60;
 }
