@@ -10,8 +10,8 @@ static void julia_color(t_frct *f)
 
 static void base_values(t_frct *f)
 {
-	f->zR = 2.0f * (f->x - WIDTH / 2.0f) / (0.5f * f->zoom * WIDTH) + f->moveX;
-	f->zI = (f->y - HEIGHT / 2.0f) / (0.5f * f->zoom * HEIGHT) + f->moveY;
+	f->zR = 2.0f * ((4 * (float)f->x / WIDTH - 2) / f->zoom) + f->moveX;
+	f->zI = ((-4 * (float)f->y / HEIGHT + 2) / f->zoom) + f->moveY;
 	f->smooth_col = expf(-fabsf((f->zR * f->zR + f->zI * f->zI)));
 }
 

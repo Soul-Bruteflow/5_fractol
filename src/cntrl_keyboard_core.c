@@ -4,11 +4,11 @@ void	frac_move(int kcode, t_frct *frct)
 {
 	if (kcode == UP)
 	{
-		frct->moveY += 0.0200 / frct->zoom;
+		frct->moveY -= 0.0200 / frct->zoom;
 	}
 	if (kcode == DOWN)
 	{
-		frct->moveY -= 0.0200 / frct->zoom;
+		frct->moveY += 0.0200 / frct->zoom;
 	}
 	if (kcode == LEFT)
 	{
