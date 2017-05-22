@@ -26,8 +26,11 @@
 
 # define TRUE 1
 # define FALSE -1
-# define HEIGHT 900
-# define WIDTH 1500
+# define HEIGHT 800
+# define WIDTH 1600
+# define HALF_HEIGHT 400
+# define HALF_WIDTH 800
+# define N_OF_TREDS 16
 # define USAGE 0
 # define CRE(x) ((x) * 4.0 / WIDTH - 2)
 # define CIM(x) ((x) * 4.0 / HEIGHT - 2)
@@ -56,12 +59,19 @@ typedef struct			s_tred
 
 typedef struct			s_rgba
 {
-	unsigned char		rgba[5];
+	unsigned char		rgba[3];
 }						t_rgba;
 
 typedef struct			s_hsv
 {
-	double				hsv[3];
+	float				hsv[3];
+	float				r;
+	float				g;
+	float				b;
+	float				f;
+	float				p;
+	float				q;
+	float				t;
 }						t_hsv;
 
 typedef struct			s_frct
@@ -70,17 +80,23 @@ typedef struct			s_frct
 //	struct s_jul		*jul;
 	int 				run_flag;
 
-	float				cRe;
-	float				cIm;
-	float				newRe;
-	float				newIm;
-	float				oldRe;
-	float				oldIm;
+	int start_y[16];
+	int end_y[16];
+	int start_x[16];
+	int end_x[16];
+
+
+
+	float				cR;
+	float				cI;
+	float				zR;
+	float				zI;
+	float				tmp;
 	float				zoom;
 	float				moveX;
 	float				moveY;
 	int					maxIter;
-	float				smoothcol;
+	float				smooth_col;
 	int 				x;
 	int 				y;
 	int 				i;
@@ -90,12 +106,8 @@ typedef struct			s_frct
 	int 				mouse_x;
 	int 				mouse_y;
 	pthread_t			*tids;
-//	pthread_attr_t		*attrs;
 	int 				tid;
 
-//	int 				lock;
-//	int 				mouse_x;
-//	int 				mouse_y;
 }						t_frct;
 
 //typedef struct			s_jul
@@ -170,6 +182,7 @@ void					frac_error(int n);
 /*
 ** UI.
 */
+
 void					frac_ui(t_frct *frct);
 void					frac_redraw_ui(t_frct *frct);
 
@@ -177,18 +190,24 @@ void					frac_redraw_ui(t_frct *frct);
 ** Draw
 */
 
-void					*frac_julia(void *arg);
 void					frac_mandelbrot(t_frct *frct);
-void					frac_put_pixel(t_frct *frct);
-t_rgba					hsv_to_rgb(t_hsv hsv);
+void					fractal_put_pixel(t_frct *frct);
+t_rgba					ft_hsv_to_rgb(t_hsv hsv);
 
 /*
 ** Threads
 */
 
-void	frac_julia_thread_create(t_frct *frct);
-void	frac_julia_thread_join(t_frct *frct);
-void *julia_thread(void *arg);
+
+/*
+** Fractals
+*/
+
+void					julia_core(void);
+void					julia_default(t_frct *frct);;
+void					julia_threads_core(t_frct *frct);
+void					*julia_worker(void *arg);
+//void					mandelbrot_core(void);
 
 t_rgba 					MapColor(int i, double r, double c);
 #endif
