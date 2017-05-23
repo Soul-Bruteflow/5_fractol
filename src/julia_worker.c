@@ -43,6 +43,5 @@ void	*julia_worker(void *arg)
 	}
 	if (f->run_flag == 0)
 		f->run_flag = 1;
-	free(f);
 	return (NULL);
 }

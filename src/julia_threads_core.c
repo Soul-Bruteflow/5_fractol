@@ -1,25 +1,61 @@
 #include "fract.h"
 
-static void init_thread_zones(t_frct *frct);
+static void thread_init_zones(t_frct *frct);
+static void threads_create(t_frct *frct, t_frct *args, pthread_t* treds);
+static void threads_join(pthread_t* treds);
+static void thread_copy_args(t_frct *frct, t_frct *args);
 
 void	julia_threads_core(t_frct *frct)
 {
-	int i;
-	pthread_t* threads;
+	pthread_t* treds;
+	t_frct *args;
 
-	init_thread_zones(frct);
-	threads = (pthread_t*)malloc(frct->mlx->height * sizeof(pthread_t));
-	for (frct->tid = 0; frct->tid < N_OF_TREDS; frct->tid++)
-	{
-		t_frct *arg = (t_frct*)malloc(sizeof(t_frct));
-		memcpy(arg, frct, sizeof(t_frct));
-		pthread_create(&threads[frct->tid], NULL, julia_worker, arg);
-	}
-	for (i = 0; i < N_OF_TREDS; i++)
-		pthread_join(threads[i], NULL);
+	thread_init_zones(frct);
+	args = (t_frct*)malloc(sizeof(t_frct) * N_OF_TREDS);
+	treds = (pthread_t*)malloc(sizeof(pthread_t) * frct->mlx->height);
+	thread_copy_args(frct, args);
+	threads_create(frct, args, treds);
+	threads_join(treds);
+	free(args);
+	free(treds);
 }
 
-static void init_thread_zones(t_frct *frct)
+static void threads_create(t_frct *frct, t_frct *args, pthread_t* treds)
+{
+	frct->tid = 0;
+	while (frct->tid < N_OF_TREDS)
+	{
+		args[frct->tid].tid = frct->tid;
+		pthread_create(&treds[frct->tid], NULL, julia_worker, &args[frct->tid]);
+		frct->tid++;
+	}
+}
+
+static void threads_join(pthread_t* treds)
+{
+	int i;
+
+	i = 0;
+	while (i < N_OF_TREDS)
+	{
+		pthread_join(treds[i], NULL);
+		i++;
+	}
+}
+
+static void thread_copy_args(t_frct *frct, t_frct *args)
+{
+	int i;
+
+	i = 0;
+	while (i < N_OF_TREDS)
+	{
+		ft_memcpy(&args[i], frct, sizeof(t_frct));
+		i++;
+	}
+}
+
+static void thread_init_zones(t_frct *frct)
 {
 	int x;
 	int y;

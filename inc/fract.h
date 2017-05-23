@@ -28,12 +28,8 @@
 # define FALSE -1
 # define HEIGHT 800
 # define WIDTH 1600
-# define HALF_HEIGHT 400
-# define HALF_WIDTH 800
 # define N_OF_TREDS 16
 # define USAGE 0
-# define CRE(x) ((x) * 4.0 / WIDTH - 2)
-# define CIM(x) ((x) * 4.0 / HEIGHT - 2)
 
 /*
 ** Keys
@@ -110,7 +106,6 @@ typedef struct			s_frct
 	int 				lock;
 	int 				mouse_x;
 	int 				mouse_y;
-	pthread_t			*tids;
 	int 				tid;
 
 }						t_frct;
