@@ -32,6 +32,12 @@
 # define USAGE 0
 
 /*
+** Fractals
+*/
+# define JULIA 0
+# define MANDELBROT 1
+
+/*
 ** Keys
 */
 # define ESC 53
@@ -68,6 +74,7 @@ typedef struct			s_hsv
 
 typedef struct			s_frct
 {
+	int 				fractal;
 	struct s_mlx		*mlx;
 	struct s_rgba		rgba;
 	struct s_hsv		hsv;
@@ -163,6 +170,7 @@ t_rgba					ft_hsv_to_rgb(t_hsv hsv);
 ** Threads
 */
 
+void					threads_core(t_frct *frct);
 
 /*
 ** Fractals
@@ -170,9 +178,13 @@ t_rgba					ft_hsv_to_rgb(t_hsv hsv);
 
 void					julia_core(void);
 void					julia_default(t_frct *frct);;
-void					julia_threads_core(t_frct *frct);
 void					*julia_worker(void *arg);
-//void					mandelbrot_core(void);
+
+void					mandelbrot_core(void);
+void					mandelbrot_default(t_frct *frct);
+void					*mandelbrot_worker(void *arg);
+
+//void	frac_mandelbrot(t_frct *f);
 
 t_rgba 					MapColor(int i, double r, double c);
 #endif

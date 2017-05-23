@@ -1,15 +1,16 @@
 #include "fract.h"
 
-
-void julia_core(void)
+void mandelbrot_core()
 {
 	t_frct *f;
 
 	f = (t_frct*)(malloc(sizeof(t_frct)));
 	f->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
-	julia_default(f);
+	mandelbrot_default(f);
 	frac_mlx_setup(f);
+
 	threads_core(f);
+
 	frac_first_draw(f);
 	mlx_mouse_hook(f->mlx->win, frac_core_mouse, f);
 	mlx_hook(f->mlx->win, 6, 0, track_mouse, f);
@@ -17,14 +18,12 @@ void julia_core(void)
 	mlx_loop(f->mlx->ptr);
 }
 
-void julia_default(t_frct *f)
+void mandelbrot_default(t_frct *f)
 {
-	f->fractal = JULIA;
+	f->fractal = MANDELBROT;
 	f->lock = -1;
-	f->cR = 0.5459;
-	f->cI = 0.0896;
-	f->zoom = 1;
-	f->moveX = 0;
+	f->zoom = 0.6;
+	f->moveX = -0.5f;
 	f->moveY = 0;
 	f->maxIter = 60;
 }

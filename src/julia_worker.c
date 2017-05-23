@@ -39,8 +39,13 @@ void	*julia_worker(void *arg)
 			while ((f->sq = (f->sqr_zR = f->zR * f->zR) +
 					(f->sqr_zI = f->zI * f->zI)) <= 4 && f->i++ < f->maxIter)
 				escape_and_color(f);
-			julia_color(f);
-			fractal_put_pixel(f);
+//			if (f->i == f->maxIter)
+//				continue;
+//			else
+//			{
+				julia_color(f);
+				fractal_put_pixel(f);
+//			}
 		}
 	}
 	if (f->run_flag == 0)

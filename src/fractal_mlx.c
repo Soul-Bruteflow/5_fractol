@@ -4,7 +4,7 @@ void	frac_redraw(t_frct *frct)
 {
 	mlx_clear_window(frct->mlx->ptr, frct->mlx->win);
 	ft_memset(frct->mlx->str,'\0', frct->mlx->str_size);
-	julia_threads_core(frct);
+	threads_core(frct);
 	mlx_put_image_to_window(frct->mlx->ptr, frct->mlx->win, frct->mlx->img,
 							frct->mlx->imgx, frct->mlx->imgy);
 	frac_ui(frct);

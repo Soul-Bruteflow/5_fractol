@@ -18,8 +18,10 @@ int	main(int ac, char **av)
 	{
 		if (!(ft_strcmp(av[1], "julia")))
 			julia_core();
-//		if (!(ft_strcmp(av[1], "mandelbrot"))
-//			mandelbrot_core();
+		else if (!(ft_strcmp(av[1], "mandelbrot")))
+			mandelbrot_core();
+		else
+			frac_error(USAGE);
 	}
 	else
 		frac_error(USAGE);
