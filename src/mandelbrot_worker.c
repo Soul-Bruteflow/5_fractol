@@ -22,9 +22,7 @@ void	*mandelbrot_worker(void *arg)
 			if (f->i == f->maxIter)
 				continue;
 			else
-			{
 				fractal_put_pixel(f);
-			}
 		}
 	}
 	if (f->run_flag == 0)
