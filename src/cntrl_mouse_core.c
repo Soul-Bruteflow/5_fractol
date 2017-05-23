@@ -13,8 +13,8 @@ int		track_mouse(int x, int y, t_frct *frct)
 
 void	frac_zoom_in(t_frct *frct, int x, int y)
 {
-	x -= WIDTH / 2;
-	y -= HEIGHT / 2;
+	x -= frct->mlx->wcenx;
+	y -= frct->mlx->wceny;
 	frct->zoom *= 1.050;
 	frct->moveX += x / frct->zoom / WIDTH / 1.8;
 	frct->moveY -= y / frct->zoom / HEIGHT / 1.8;
@@ -23,8 +23,8 @@ void	frac_zoom_in(t_frct *frct, int x, int y)
 
 void	frac_zoom_out(t_frct *frct, int x, int y)
 {
-	x -= WIDTH / 2;
-	y -= HEIGHT / 2;
+	x -= frct->mlx->wcenx;
+	y -= frct->mlx->wceny;
 	frct->zoom /= 1.050;
 	frct->moveX += x / frct->zoom / WIDTH / 1.8;
 	frct->moveY -= y / frct->zoom / HEIGHT / 1.8;

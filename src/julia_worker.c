@@ -25,7 +25,9 @@ static void escape_and_color(t_frct *f)
 
 void	*julia_worker(void *arg)
 {
-	t_frct *f = (t_frct*)arg;
+	t_frct *f;
+
+	f = (t_frct*)arg;
 	f->y = f->start_y[f->tid] - 1;
 	while (f->y++ < f->end_y[f->tid])
 	{
@@ -34,7 +36,7 @@ void	*julia_worker(void *arg)
 		{
 			base_values(f);
 			f->i = -1;
-			while((f->sq = (f->sqr_zR = f->zR * f->zR) +
+			while ((f->sq = (f->sqr_zR = f->zR * f->zR) +
 					(f->sqr_zI = f->zI * f->zI)) <= 4 && f->i++ < f->maxIter)
 				escape_and_color(f);
 			julia_color(f);

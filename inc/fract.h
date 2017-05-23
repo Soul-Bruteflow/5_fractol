@@ -49,10 +49,6 @@
 ** str_size - size of image string.
 */
 
-typedef struct			s_tred
-{
-}						t_tred;
-
 typedef struct			s_rgba
 {
 	unsigned char		rgba[3];
@@ -73,16 +69,8 @@ typedef struct			s_hsv
 typedef struct			s_frct
 {
 	struct s_mlx		*mlx;
-//	struct s_jul		*jul;
-	int 				run_flag;
-
-	int start_y[16];
-	int end_y[16];
-	int start_x[16];
-	int end_x[16];
-
-
-
+	struct s_rgba		rgba;
+	struct s_hsv		hsv;
 	float				cR;
 	float				cI;
 	float				zR;
@@ -96,45 +84,22 @@ typedef struct			s_frct
 	float				zoom;
 	float				moveX;
 	float				moveY;
-	int					maxIter;
 	float				smooth_col;
+	int					maxIter;
 	int 				x;
 	int 				y;
 	int 				i;
-	struct s_rgba		rgba;
-	struct s_hsv		hsv;
+	int 				run_flag;
+	int					start_y[N_OF_TREDS];
+	int					end_y[N_OF_TREDS];
+	int					start_x[N_OF_TREDS];
+	int					end_x[N_OF_TREDS];
 	int 				lock;
 	int 				mouse_x;
 	int 				mouse_y;
 	int 				tid;
 
 }						t_frct;
-
-//typedef struct			s_jul
-//{
-//	float				cRe;
-//	float				cIm;
-//	float				newRe;
-//	float				newIm;
-//	float				oldRe;
-//	float				oldIm;
-//	float				zoom;
-//	float				moveX;
-//	float				moveY;
-//	int					maxIter;
-//	float				smoothcol;
-//	int 				x;
-//	int 				y;
-//	int 				i;
-//	struct s_rgba		*rgba;
-//	struct s_hsv		*hsv;
-//	int 				lock;
-//	int 				mouse_x;
-//	int 				mouse_y;
-//	pthread_t			*tids;
-////	pthread_attr_t		*attrs;
-//	int 				tid;
-//}						t_jul;
 
 typedef struct			s_mlx
 {

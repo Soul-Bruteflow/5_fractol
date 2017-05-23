@@ -7,12 +7,12 @@ static void thread_copy_args(t_frct *frct, t_frct *args);
 
 void	julia_threads_core(t_frct *frct)
 {
-	pthread_t* treds;
+	pthread_t *treds;
 	t_frct *args;
 
-	thread_init_zones(frct);
 	args = (t_frct*)malloc(sizeof(t_frct) * N_OF_TREDS);
 	treds = (pthread_t*)malloc(sizeof(pthread_t) * frct->mlx->height);
+	thread_init_zones(frct);
 	thread_copy_args(frct, args);
 	threads_create(frct, args, treds);
 	threads_join(treds);

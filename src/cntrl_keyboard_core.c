@@ -23,7 +23,6 @@ void	frac_move(int kcode, t_frct *frct)
 
 int		frac_core_keyb(int kcode, t_frct *frct)
 {
-//	printf("%d\n", kcode);
 	if (kcode == SPC)
 	{
 
