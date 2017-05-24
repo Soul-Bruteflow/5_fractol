@@ -35,8 +35,21 @@ void	frac_max_iteration(int kcode, t_frct *frct)
 	}
 }
 
+void	frac_reset(t_frct *f)
+{
+	if (f->fractal == JULIA)
+		julia_default(f);
+	else if (f->fractal == MANDELBROT)
+		mandelbrot_default(f);
+	else if (f->fractal == SHIP)
+		ship_default(f);
+	frac_redraw(f);
+}
+
 int		frac_core_keyb(int kcode, t_frct *f)
 {
+	if (kcode == SPC)
+		frac_reset(f);
 	if (kcode == PLUS || kcode == MINUS)
 		frac_max_iteration(kcode, f);
 	if (kcode == ESC)

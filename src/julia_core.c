@@ -20,7 +20,7 @@ void julia_core(void)
 void julia_default(t_frct *f)
 {
 	f->fractal = JULIA;
-	f->lock = -1;
+	f->lock = 1;
 	f->cR = 0.5459;
 	f->cI = 0.0896;
 	f->zoom = 1;
