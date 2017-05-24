@@ -36,6 +36,8 @@
 */
 # define JULIA 0
 # define MANDELBROT 1
+# define SHIP 2
+# define NEWTON 3
 
 /*
 ** Keys
@@ -183,6 +185,10 @@ void					*julia_worker(void *arg);
 void					mandelbrot_core(void);
 void					mandelbrot_default(t_frct *frct);
 void					*mandelbrot_worker(void *arg);
+
+void					ship_core(void);
+void					ship_default(t_frct *f);
+void					*ship_worker(void *arg);
 
 //void	frac_mandelbrot(t_frct *f);
 

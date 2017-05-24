@@ -20,6 +20,8 @@ int	main(int ac, char **av)
 			julia_core();
 		else if (!(ft_strcmp(av[1], "mandelbrot")))
 			mandelbrot_core();
+		else if (!(ft_strcmp(av[1], "ship")))
+			ship_core();
 		else
 			frac_error(USAGE);
 	}

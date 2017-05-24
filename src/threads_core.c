@@ -18,6 +18,8 @@ void	threads_core(t_frct *f)
 		threads_create(f, args, treds, julia_worker);
 	else if (f->fractal == MANDELBROT)
 		threads_create(f, args, treds, mandelbrot_worker);
+	else if (f->fractal == SHIP)
+		threads_create(f, args, treds, ship_worker);
 	threads_join(treds);
 	free(args);
 	free(treds);

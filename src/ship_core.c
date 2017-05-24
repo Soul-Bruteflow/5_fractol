@@ -1,12 +1,12 @@
 #include "fract.h"
 
-void mandelbrot_core(void)
+void ship_core(void)
 {
 	t_frct *f;
 
 	f = (t_frct*)(malloc(sizeof(t_frct)));
 	f->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
-	mandelbrot_default(f);
+	ship_default(f);
 	frac_mlx_setup(f);
 	threads_core(f);
 	frac_first_draw(f);
@@ -16,9 +16,9 @@ void mandelbrot_core(void)
 	mlx_loop(f->mlx->ptr);
 }
 
-void mandelbrot_default(t_frct *f)
+void ship_default(t_frct *f)
 {
-	f->fractal = MANDELBROT;
+	f->fractal = SHIP;
 	f->lock = -1;
 	f->zoom = 0.6;
 	f->moveX = -0.5f;
