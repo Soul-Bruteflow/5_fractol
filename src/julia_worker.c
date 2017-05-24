@@ -37,7 +37,7 @@ void	*julia_worker(void *arg)
 			base_values(f);
 			f->i = -1;
 			while ((f->sq = (f->sqr_zR = f->zR * f->zR) +
-					(f->sqr_zI = f->zI * f->zI)) <= 4 && f->i++ < f->maxIter)
+					(f->sqr_zI = f->zI * f->zI)) < 4 && f->i++ < f->maxIter)
 				escape_and_color(f);
 //			if (f->i == f->maxIter)
 //				continue;

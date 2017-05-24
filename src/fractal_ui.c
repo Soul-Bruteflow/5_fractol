@@ -19,6 +19,10 @@ void	frac_ui(t_frct *frct)
 	frct->maxIter_str = ft_itoa(frct->maxIter);
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
 				   270, 680, 0x00FFFFFF, frct->maxIter_str);
+	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
+				   20, 700, 0x00FFFFFF, "Move: arrow keys");
+	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
+				   20, 720, 0x00FFFFFF, "Zoom in/out: scroll wheel");
 	if (frct->fractal == JULIA)
 	{
 		if(frct->lock == 1)

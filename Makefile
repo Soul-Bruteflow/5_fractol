@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 INC_DIR = ./inc/
@@ -18,36 +18,21 @@ LIB_DIR = ./libft/
 LIB_INC = $(LIB_DIR)
 LIB_LIB = $(LIB_DIR)libft.a
 
-OBJ	=	fdf_center_current.o \
-		fdf_center_find.o \
-		fdf_center_place.o \
-		fdf_center_zero.o \
-		fdf_draw.o \
-		fdf_error_sup.o \
-		fdf_error.o \
-		fdf_key_core.o \
-		fdf_mlx.o \
-		fdf_move.o \
-		fdf_my_color.o \
-		fdf_pixel_color_z.o \
-		fdf_pixel_color.o \
-		fdf_pixel_malloc.o \
-		fdf_pixel_read.o \
-		fdf_rotate_x.o \
-		fdf_rotate_y.o \
-		fdf_rotate_z.o \
-		fdf_rotate.o \
-		fdf_ui.o \
-		fdf_validate.o \
-		fdf_win_setup.o \
-		fdf_zoom_auto_minus.o \
-		fdf_zoom_auto_plus.o \
-		fdf_zoom.o \
-		fdf.o \
-		ft_atoi_hex.o \
-		ft_ishex.o \
-		get_next_line.o
-
+OBJ	=	cntrl_keyboard_core.o \
+		cntrl_mouse_core.o \
+		fractal_error.o \
+		fractal_mlx.o \
+		fractal_put_pixel.o \
+		fractal_ui.o \
+		ft_hsv_to_rgb.o \
+		julia_core.o \
+		julia_worker.o \
+		main.o \
+		mandelbrot_core.o \
+		mandelbrot_worker.o \
+		ship_core.o \
+		ship_worker.o \
+		threads_core.o
 
 LIB = $(LIB_DIR)libft.a
 
@@ -55,8 +40,10 @@ HEADERS	= $(INC_DIR)
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-MLX		= -lmlx -framework OpenGL -framework AppKit
-INC_OPT = -I $(LIB_INC) -I $(INC_DIR)
+MLX		=  -g -L /usr/X11/lib -lmlx -framework OpenGL -framework AppKit
+# MLX		= -lmlx -framework OpenGL -framework AppKit
+# INC_OPT = -I $(LIB_INC) -I $(INC_DIR)
+INC_OPT = -I /usr/X11/include -I $(LIB_INC) -I $(INC_DIR)
 OUT_OPT = -o
 OBJ_OPT = $< -o $@
 LIB_OPT	= -c
