@@ -25,8 +25,6 @@ void *ship_worker(void *arg)
 				fractal_put_pixel(f);
 		}
 	}
-	if (f->run_flag == 0)
-		f->run_flag = 1;
 	return (NULL);
 }
 

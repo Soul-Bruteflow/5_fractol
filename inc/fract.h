@@ -48,6 +48,8 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+# define PLUS 24
+# define MINUS 27
 
 /*
 ** Minilibx
@@ -107,6 +109,7 @@ typedef struct			s_frct
 	int 				mouse_x;
 	int 				mouse_y;
 	int 				tid;
+	char 				*maxIter_str;
 
 }						t_frct;
 
@@ -144,6 +147,8 @@ void					frac_redraw(t_frct *frct);
 */
 
 int						frac_core_keyb(int kcode, t_frct *frct);
+void					frac_max_iteration(int kcode, t_frct *frct);
+void					frac_move(int kcode, t_frct *frct);
 int						frac_core_mouse(int button, int x, int y, t_frct *frct);
 int						track_mouse(int x, int y, t_frct *frct);
 

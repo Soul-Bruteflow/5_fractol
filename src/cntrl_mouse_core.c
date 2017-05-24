@@ -33,6 +33,7 @@ void	frac_zoom_out(t_frct *frct, int x, int y)
 
 int	frac_core_mouse(int button, int x, int y, t_frct *frct)
 {
+	if (frct->fractal == JULIA)
 	if (button == 1)
 	{
 		if (frct->lock == 1 || frct->lock == -1)

@@ -11,13 +11,21 @@ void	frac_redraw_ui(t_frct *frct)
 void	frac_ui(t_frct *frct)
 {
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
-				   20, 740, 0x00FFFFFF, "Controls:");
+				   20, 640, 0x00FFFFFF, "Controls:");
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
-				   20, 760, 0x00FFFFFF, "Exit: ESC");
-	if(frct->lock == 1)
+				   20, 660, 0x00FFFFFF, "Exit: ESC");
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
-				   20, 700, 0x00FFFFFF, "Lock status: On");
-	else
+				   20, 680, 0x00FFFFFF, "Number of iteration: +/-");
+	frct->maxIter_str = ft_itoa(frct->maxIter);
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
-				   20, 700, 0x00FFFFFF, "Lock status: Off");
+				   270, 680, 0x00FFFFFF, frct->maxIter_str);
+	if (frct->fractal == JULIA)
+	{
+		if(frct->lock == 1)
+			mlx_string_put(frct->mlx->ptr, frct->mlx->win,
+						   20, 600, 0x00FFFFFF, "Lock status: On");
+		else
+			mlx_string_put(frct->mlx->ptr, frct->mlx->win,
+						   20, 600, 0x00FFFFFF, "Lock status: Off");
+	}
 }
