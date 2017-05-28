@@ -23,7 +23,6 @@ void	frac_first_draw(t_frct *frct)
 
 void	frac_mlx_setup(t_frct *frct)
 {
-	frct->run_flag = 0;
 	frct->mlx->imgx = 0;
 	frct->mlx->imgy = 0;
 	frct->mlx->width = WIDTH;

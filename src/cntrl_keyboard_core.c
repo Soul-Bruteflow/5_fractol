@@ -1,24 +1,16 @@
 #include "fract.h"
 
-void	frac_move(int kcode, t_frct *frct)
+void	frac_move(int kcode, t_frct *f)
 {
 	if (kcode == UP)
-	{
-		frct->moveY -= 0.0200 / frct->zoom;
-	}
+		f->moveY -= 0.0200 / f->zoom;
 	if (kcode == DOWN)
-	{
-		frct->moveY += 0.0200 / frct->zoom;
-	}
+		f->moveY += 0.0200 / f->zoom;
 	if (kcode == LEFT)
-	{
-		frct->moveX += 0.0200 / frct->zoom;
-	}
+		f->moveX += 0.0200 / f->zoom;
 	if (kcode == RIGHT)
-	{
-		frct->moveX -= 0.0200 / frct->zoom;
-	}
-	frac_redraw(frct);
+		f->moveX -= 0.0200 / f->zoom;
+	frac_redraw(f);
 }
 
 void	frac_max_iteration(int kcode, t_frct *frct)
@@ -46,6 +38,22 @@ void	frac_reset(t_frct *f)
 	frac_redraw(f);
 }
 
+void	fractal_color_model(t_frct *f)
+{
+	if (f->color == 0)
+	{
+		f->color = 1;
+		frac_redraw(f);
+		return ;
+	}
+	else if (f->color == 1)
+	{
+		f->color = 0;
+		frac_redraw(f);
+		return ;
+	}
+}
+
 int		frac_core_keyb(int kcode, t_frct *f)
 {
 	if (kcode == SPC)
@@ -56,6 +64,8 @@ int		frac_core_keyb(int kcode, t_frct *f)
 		exit(0);
 	if (kcode == UP || kcode == DOWN || kcode == LEFT || kcode == RIGHT)
 		frac_move(kcode, f);
+	if (kcode == QKEY)
+		fractal_color_model(f);
 
 	return (0);
 }

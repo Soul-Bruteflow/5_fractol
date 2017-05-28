@@ -24,7 +24,7 @@ void			frac_error(int n)
 {
 	if (n == USAGE)
 		error_exit("Usage: ./fractol <name>\nAvalible names:\n1. "
-						   "julia\n2. mandelbrot\n3.ship\n4.newton\n");
+						   "julia\n2. mandelbrot\n3. ship");
 //	if (n == LINE)
 //		error_exit("Error: One or more lines have wrong length. Exiting.\n");
 //	if (n == COLOR)

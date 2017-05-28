@@ -50,6 +50,8 @@
 # define RIGHT 124
 # define PLUS 24
 # define MINUS 27
+# define QKEY 12
+# define WKEY 13
 
 /*
 ** Minilibx
@@ -79,6 +81,7 @@ typedef struct			s_hsv
 typedef struct			s_frct
 {
 	int 				fractal;
+	int 				color;
 	struct s_mlx		*mlx;
 	struct s_rgba		rgba;
 	struct s_hsv		hsv;
@@ -92,6 +95,7 @@ typedef struct			s_frct
 	float 				sqr_zI;
 	float 				sq;
 	float				tmp;
+	float				tmp2;
 	float				zoom;
 	float				moveX;
 	float				moveY;
@@ -100,7 +104,7 @@ typedef struct			s_frct
 	int 				x;
 	int 				y;
 	int 				i;
-	int 				run_flag;
+	//int 				run_flag;
 	int					start_y[N_OF_TREDS];
 	int					end_y[N_OF_TREDS];
 	int					start_x[N_OF_TREDS];
@@ -172,6 +176,7 @@ void					frac_redraw_ui(t_frct *frct);
 void					frac_mandelbrot(t_frct *frct);
 void					fractal_put_pixel(t_frct *frct);
 t_rgba					ft_hsv_to_rgb(t_hsv hsv);
+void					hsv_color(t_frct *f);
 
 /*
 ** Threads

@@ -19,10 +19,9 @@ void *ship_worker(void *arg)
 							(f->sqr_zI = f->zI * f->zI)) < 4
 				   && f->i < f->maxIter)
 				escape_and_color(f);
-			if (f->i == f->maxIter)
-				continue;
-			else
-				fractal_put_pixel(f);
+			if (f->color == 1)
+				hsv_color(f);
+			fractal_put_pixel(f);
 		}
 	}
 	return (NULL);
@@ -35,10 +34,14 @@ static void base_values(t_frct *f)
 	f->zR = f->cR;
 	f->zI = f->cI;
 	f->i = 0;
+	if (f->color == 1)
+		f->smooth_col = expf(-fabsf((f->zR * f->zR + f->zI * f->zI)));
 }
 
 static void escape_and_color(t_frct *f)
 {
+	if (f->color == 1)
+		f->smooth_col += exp(-fabs(f->sq));
 	f->zI = fabsf(f->zR * f->zI + f->zR * f->zI - f->cI);
 	f->zR = fabsf(f->sqr_zR - f->sqr_zI - f->cR);
 	f->i++;

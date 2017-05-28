@@ -7,6 +7,7 @@ void ship_core(void)
 	f = (t_frct*)(malloc(sizeof(t_frct)));
 	f->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
 	ship_default(f);
+	f->color = 0;
 	frac_mlx_setup(f);
 	threads_core(f);
 	frac_first_draw(f);
