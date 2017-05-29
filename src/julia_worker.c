@@ -14,19 +14,19 @@
 
 static void		base_values(t_frct *f)
 {
-	f->zR = 2.0f * ((4 * (float)f->x / WIDTH - 2) / f->zoom) + f->moveX;
-	f->zI = ((-4 * (float)f->y / HEIGHT + 2) / f->zoom) + f->moveY;
+	f->zr = 2.0f * ((4 * (float)f->x / WIDTH - 2) / f->zoom) + f->movex;
+	f->zi = ((-4 * (float)f->y / HEIGHT + 2) / f->zoom) + f->movey;
 	if (f->color == 1)
-		f->smooth_col = expf(-fabsf((f->zR * f->zR + f->zI * f->zI)));
+		f->smooth_col = expf(-fabsf((f->zr * f->zr + f->zi * f->zi)));
 }
 
 static void		escape_and_color(t_frct *f)
 {
 	if (f->color == 1)
 		f->smooth_col += exp(-fabs(f->sq));
-	f->tmp = f->sqr_zR - f->sqr_zI + f->cR;
-	f->zI = f->zR * f->zI * 2 + f->cI;
-	f->zR = f->tmp;
+	f->tmp = f->sqr_zr - f->sqr_zi + f->cr;
+	f->zi = f->zr * f->zi * 2 + f->ci;
+	f->zr = f->tmp;
 }
 
 void			*julia_worker(void *arg)
@@ -43,8 +43,8 @@ void			*julia_worker(void *arg)
 			base_values(f);
 			f->i = -1;
 			while ((f->sq =
-						(f->sqr_zR = f->zR * f->zR) +
-						(f->sqr_zI = f->zI * f->zI)) < 4 && f->i++ < f->maxIter)
+						(f->sqr_zr = f->zr * f->zr) +
+						(f->sqr_zi = f->zi * f->zi)) < 4 && f->i++ < f->maxiter)
 				escape_and_color(f);
 			if (f->color == 1)
 				hsv_color(f);

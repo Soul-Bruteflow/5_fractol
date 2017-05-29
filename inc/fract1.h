@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 11:46:31 by mvlad             #+#    #+#             */
-/*   Updated: 2017/05/29 11:46:34 by mvlad            ###   ########.fr       */
+/*   Created: 2017/04/11 14:21:01 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 11:24:10 by mvlad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,39 +71,39 @@ typedef struct				s_hsv
 
 typedef struct				s_frct
 {
-	int						fractal;
-	int						color;
+	int		 				fractal;
+	int 					color;
 	struct s_mlx			*mlx;
 	struct s_rgba			rgba;
 	struct s_hsv			hsv;
-	float					cr;
-	float					ci;
-	float					zr;
-	float					zi;
-	float					rootx;
-	float					rooty;
-	float					sqr_zr;
-	float					sqr_zi;
-	float					sq;
+	float					cR;
+	float					cI;
+	float					zR;
+	float					zI;
+	float 					rootX;
+	float 					rootY;
+	float 					sqr_zR;
+	float 					sqr_zI;
+	float 					sq;
 	float					tmp;
 	float					tmp2;
 	float					zoom;
-	float					movex;
-	float					movey;
+	float					moveX;
+	float					moveY;
 	float					smooth_col;
-	int						maxiter;
-	int						x;
-	int						y;
-	int						i;
+	int						maxIter;
+	int 					x;
+	int 					y;
+	int 					i;
 	int						start_y[N_OF_TREDS];
 	int						end_y[N_OF_TREDS];
 	int						start_x[N_OF_TREDS];
 	int						end_x[N_OF_TREDS];
-	int						lock;
-	int						mouse_x;
-	int						mouse_y;
-	int						tid;
-	char					*maxiter_str;
+	int 					lock;
+	int 					mouse_x;
+	int 					mouse_y;
+	int 					tid;
+	char 					*maxIter_str;
 }							t_frct;
 
 typedef struct				s_mlx
@@ -171,5 +171,5 @@ void						*mandelbrot_worker(void *arg);
 void						ship_core(void);
 void						ship_default(t_frct *f);
 void						*ship_worker(void *arg);
-t_rgba						mapcolor(int i, double r, double c);
+t_rgba 						MapColor(int i, double r, double c);
 #endif

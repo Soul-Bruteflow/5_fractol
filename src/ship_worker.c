@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 11:09:44 by mvlad             #+#    #+#             */
+/*   created: 2017/05/29 11:09:44 by mvlad             #+#    #+#             */
 /*   Updated: 2017/05/29 11:10:46 by mvlad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,21 +14,21 @@
 
 static void	base_values(t_frct *f)
 {
-	f->cR = 2.0f * ((4 * (float)f->x / WIDTH - 2) / f->zoom) + f->moveX;
-	f->cI = ((-4 * (float)f->y / HEIGHT + 2) / f->zoom) + f->moveY;
-	f->zR = f->cR;
-	f->zI = f->cI;
+	f->cr = 2.0f * ((4 * (float)f->x / WIDTH - 2) / f->zoom) + f->movex;
+	f->ci = ((-4 * (float)f->y / HEIGHT + 2) / f->zoom) + f->movey;
+	f->zr = f->cr;
+	f->zi = f->ci;
 	f->i = 0;
 	if (f->color == 1)
-		f->smooth_col = expf(-fabsf((f->zR * f->zR + f->zI * f->zI)));
+		f->smooth_col = expf(-fabsf((f->zr * f->zr + f->zi * f->zi)));
 }
 
 static void	escape_and_color(t_frct *f)
 {
 	if (f->color == 1)
 		f->smooth_col += exp(-fabs(f->sq));
-	f->zI = fabsf(f->zR * f->zI + f->zR * f->zI - f->cI);
-	f->zR = fabsf(f->sqr_zR - f->sqr_zI - f->cR);
+	f->zi = fabsf(f->zr * f->zi + f->zr * f->zi - f->ci);
+	f->zr = fabsf(f->sqr_zr - f->sqr_zi - f->cr);
 	f->i++;
 }
 
@@ -45,8 +45,8 @@ void		*ship_worker(void *arg)
 		{
 			base_values(f);
 			while ((f->sq =
-						(f->sqr_zR = f->zR * f->zR) +
-						(f->sqr_zI = f->zI * f->zI)) < 4 && f->i < f->maxIter)
+						(f->sqr_zr = f->zr * f->zr) +
+						(f->sqr_zi = f->zi * f->zi)) < 4 && f->i < f->maxiter)
 				escape_and_color(f);
 			if (f->color == 1)
 				hsv_color(f);

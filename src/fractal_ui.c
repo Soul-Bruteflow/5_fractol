@@ -28,9 +28,9 @@ void	frac_ui(t_frct *frct)
 			20, 660, 0x00FFFFFF, "Exit: ESC");
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
 			20, 680, 0x00FFFFFF, "Number of iteration: +/-");
-	frct->maxIter_str = ft_itoa(frct->maxIter);
+	frct->maxiter_str = ft_itoa(frct->maxiter);
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
-			270, 680, 0x00FFFFFF, frct->maxIter_str);
+			270, 680, 0x00FFFFFF, frct->maxiter_str);
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,
 			20, 700, 0x00FFFFFF, "Move: arrow keys");
 	mlx_string_put(frct->mlx->ptr, frct->mlx->win,

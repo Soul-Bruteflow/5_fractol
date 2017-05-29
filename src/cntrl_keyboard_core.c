@@ -15,26 +15,26 @@
 void	frac_move(int kcode, t_frct *f)
 {
 	if (kcode == UP)
-		f->moveY -= 0.0200 / f->zoom;
+		f->movey -= 0.0200 / f->zoom;
 	if (kcode == DOWN)
-		f->moveY += 0.0200 / f->zoom;
+		f->movey += 0.0200 / f->zoom;
 	if (kcode == LEFT)
-		f->moveX += 0.0200 / f->zoom;
+		f->movex += 0.0200 / f->zoom;
 	if (kcode == RIGHT)
-		f->moveX -= 0.0200 / f->zoom;
+		f->movex -= 0.0200 / f->zoom;
 	frac_redraw(f);
 }
 
 void	frac_max_iteration(int kcode, t_frct *frct)
 {
-	if (kcode == PLUS && frct->maxIter < 500)
+	if (kcode == PLUS && frct->maxiter < 500)
 	{
-		frct->maxIter += 5;
+		frct->maxiter += 5;
 		frac_redraw(frct);
 	}
-	else if (kcode == MINUS && frct->maxIter > 10)
+	else if (kcode == MINUS && frct->maxiter > 10)
 	{
-		frct->maxIter -= 5;
+		frct->maxiter -= 5;
 		frac_redraw(frct);
 	}
 }

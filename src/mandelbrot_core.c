@@ -32,7 +32,7 @@ void	mandelbrot_default(t_frct *f)
 {
 	f->fractal = MANDELBROT;
 	f->zoom = 0.6;
-	f->moveX = -0.5f;
-	f->moveY = 0;
-	f->maxIter = 60;
+	f->movex = -0.5f;
+	f->movey = 0;
+	f->maxiter = 60;
 }

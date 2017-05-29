@@ -33,10 +33,10 @@ void	julia_default(t_frct *f)
 {
 	f->fractal = JULIA;
 	f->lock = 1;
-	f->cR = 0.5459;
-	f->cI = 0.0896;
+	f->cr = 0.5459;
+	f->ci = 0.0896;
 	f->zoom = 1;
-	f->moveX = 0;
-	f->moveY = 0;
-	f->maxIter = 60;
+	f->movex = 0;
+	f->movey = 0;
+	f->maxiter = 60;
 }
