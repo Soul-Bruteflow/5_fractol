@@ -12,6 +12,12 @@
 
 #include "fract.h"
 
+int		expose_hook(void *param)
+{
+	frac_redraw(param);
+	return (0);
+}
+
 void	frac_redraw(t_frct *frct)
 {
 	mlx_clear_window(frct->mlx->ptr, frct->mlx->win);

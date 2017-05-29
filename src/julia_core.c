@@ -30,6 +30,7 @@ void	julia_core(void)
 	mlx_mouse_hook(f->mlx->win, frac_core_mouse, f);
 	mlx_hook(f->mlx->win, 6, 0, track_mouse, f);
 	mlx_hook(f->mlx->win, 2, 5, frac_core_keyb, f);
+	mlx_expose_hook(f->mlx->win, expose_hook, f);
 	mlx_loop(f->mlx->ptr);
 }
 

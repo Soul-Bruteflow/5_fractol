@@ -133,6 +133,7 @@ typedef struct				s_mlx
 void						frac_mlx_setup(t_frct *frct);
 void						frac_first_draw(t_frct *frct);
 void						frac_redraw(t_frct *frct);
+int							expose_hook(void *param);
 /*
 ** Control
 */
