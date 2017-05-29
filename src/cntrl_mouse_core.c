@@ -12,7 +12,27 @@
 
 #include "fract.h"
 
-int		track_mouse(int x, int y, t_frct *frct)
+static void	frac_zoom_in(t_frct *frct, int x, int y)
+{
+	x -= frct->mlx->wcenx;
+	y -= frct->mlx->wceny;
+	frct->zoom *= 1.050;
+	frct->movex += x / frct->zoom / WIDTH / 1.8;
+	frct->movey -= y / frct->zoom / HEIGHT / 1.8;
+	frac_redraw(frct);
+}
+
+static void	frac_zoom_out(t_frct *frct, int x, int y)
+{
+	x -= frct->mlx->wcenx;
+	y -= frct->mlx->wceny;
+	frct->zoom /= 1.050;
+	frct->movex += x / frct->zoom / WIDTH / 1.8;
+	frct->movey -= y / frct->zoom / HEIGHT / 1.8;
+	frac_redraw(frct);
+}
+
+int			track_mouse(int x, int y, t_frct *frct)
 {
 	if (frct->lock == 0)
 	{
@@ -23,27 +43,7 @@ int		track_mouse(int x, int y, t_frct *frct)
 	return (0);
 }
 
-void	frac_zoom_in(t_frct *frct, int x, int y)
-{
-	x -= frct->mlx->wcenx;
-	y -= frct->mlx->wceny;
-	frct->zoom *= 1.050;
-	frct->movex += x / frct->zoom / WIDTH / 1.8;
-	frct->movey -= y / frct->zoom / HEIGHT / 1.8;
-	frac_redraw(frct);
-}
-
-void	frac_zoom_out(t_frct *frct, int x, int y)
-{
-	x -= frct->mlx->wcenx;
-	y -= frct->mlx->wceny;
-	frct->zoom /= 1.050;
-	frct->movex += x / frct->zoom / WIDTH / 1.8;
-	frct->movey -= y / frct->zoom / HEIGHT / 1.8;
-	frac_redraw(frct);
-}
-
-int		frac_core_mouse(int button, int x, int y, t_frct *frct)
+int			frac_core_mouse(int button, int x, int y, t_frct *frct)
 {
 	if (frct->fractal == JULIA)
 		if (button == 1)

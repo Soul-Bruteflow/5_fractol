@@ -35,6 +35,6 @@ static void		error_exit(char *s)
 void			frac_error(int n)
 {
 	if (n == USAGE)
-		error_exit("Usage: ./fractol <name>\nAvalible names:\n1. "
+		error_exit("Usage: ./fractol <fractal>\nAvalible fractals:\n1. "
 				"julia\n2. mandelbrot\n3. ship");
 }

@@ -12,7 +12,7 @@
 
 #include "fract.h"
 
-void	frac_move(int kcode, t_frct *f)
+static void	frac_move(int kcode, t_frct *f)
 {
 	if (kcode == UP)
 		f->movey -= 0.0200 / f->zoom;
@@ -25,7 +25,7 @@ void	frac_move(int kcode, t_frct *f)
 	frac_redraw(f);
 }
 
-void	frac_max_iteration(int kcode, t_frct *frct)
+static void	frac_max_iteration(int kcode, t_frct *frct)
 {
 	if (kcode == PLUS && frct->maxiter < 500)
 	{
@@ -39,7 +39,7 @@ void	frac_max_iteration(int kcode, t_frct *frct)
 	}
 }
 
-void	frac_reset(t_frct *f)
+static void	frac_reset(t_frct *f)
 {
 	if (f->fractal == JULIA)
 		julia_default(f);
@@ -50,7 +50,7 @@ void	frac_reset(t_frct *f)
 	frac_redraw(f);
 }
 
-void	fractal_color_model(t_frct *f)
+static void	fractal_color_model(t_frct *f)
 {
 	if (f->color == 0)
 	{
@@ -66,7 +66,7 @@ void	fractal_color_model(t_frct *f)
 	}
 }
 
-int		frac_core_keyb(int kcode, t_frct *f)
+int			frac_core_keyb(int kcode, t_frct *f)
 {
 	if (kcode == SPC)
 		frac_reset(f);
