@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cntrl_keyboard_core.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 10:42:27 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 10:43:06 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
 void	frac_move(int kcode, t_frct *f)
@@ -66,6 +78,5 @@ int		frac_core_keyb(int kcode, t_frct *f)
 		frac_move(kcode, f);
 	if (kcode == QKEY)
 		fractal_color_model(f);
-
 	return (0);
 }

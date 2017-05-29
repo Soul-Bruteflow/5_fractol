@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hsv_to_rgb.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 10:57:05 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 10:57:18 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
-static void rgb_assign(t_hsv *hsv, float n1, float n2, float n3)
+static void		rgb_assign(t_hsv *hsv, float n1, float n2, float n3)
 {
 	hsv->r = n1;
 	hsv->g = n2;
 	hsv->b = n3;
 }
 
-static void rgb_condition(t_hsv *hsv, int i)
+static void		rgb_condition(t_hsv *hsv, int i)
 {
 	if (i == 0)
 		rgb_assign(hsv, hsv->hsv[2], hsv->t, hsv->p);
@@ -23,10 +35,10 @@ static void rgb_condition(t_hsv *hsv, int i)
 		rgb_assign(hsv, hsv->hsv[2], hsv->p, hsv->q);
 }
 
-t_rgba	ft_hsv_to_rgb(t_hsv hsv)
+t_rgba			ft_hsv_to_rgb(t_hsv hsv)
 {
-	int i;
-	t_rgba ret_rgb;
+	int				i;
+	t_rgba			ret_rgb;
 
 	hsv.r = 0;
 	hsv.g = 0;

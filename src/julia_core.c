@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   julia_core.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 10:59:44 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 10:59:57 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
-
-void julia_core(void)
+void	julia_core(void)
 {
-	t_frct *f;
+	t_frct	*f;
 
 	f = (t_frct*)(malloc(sizeof(t_frct)));
 	f->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
@@ -18,7 +29,7 @@ void julia_core(void)
 	mlx_loop(f->mlx->ptr);
 }
 
-void julia_default(t_frct *f)
+void	julia_default(t_frct *f)
 {
 	f->fractal = JULIA;
 	f->lock = 1;

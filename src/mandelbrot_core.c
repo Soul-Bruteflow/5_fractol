@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot_core.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 11:05:36 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 11:05:55 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
-void mandelbrot_core(void)
+void	mandelbrot_core(void)
 {
-	t_frct *f;
+	t_frct	*f;
 
 	f = (t_frct*)(malloc(sizeof(t_frct)));
 	f->mlx = (t_mlx*)(malloc(sizeof(t_mlx)));
@@ -16,7 +28,7 @@ void mandelbrot_core(void)
 	mlx_loop(f->mlx->ptr);
 }
 
-void mandelbrot_default(t_frct *f)
+void	mandelbrot_default(t_frct *f)
 {
 	f->fractal = MANDELBROT;
 	f->zoom = 0.6;

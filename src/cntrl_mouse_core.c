@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cntrl_mouse_core.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 10:43:23 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 10:47:58 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
 int		track_mouse(int x, int y, t_frct *frct)
@@ -31,29 +43,25 @@ void	frac_zoom_out(t_frct *frct, int x, int y)
 	frac_redraw(frct);
 }
 
-int	frac_core_mouse(int button, int x, int y, t_frct *frct)
+int		frac_core_mouse(int button, int x, int y, t_frct *frct)
 {
 	if (frct->fractal == JULIA)
-	if (button == 1)
-	{
-		if (frct->lock == 1 || frct->lock == -1)
+		if (button == 1)
 		{
-			frct->lock = 0;
-			frac_redraw_ui(frct);
+			if (frct->lock == 1 || frct->lock == -1)
+			{
+				frct->lock = 0;
+				frac_redraw_ui(frct);
+			}
+			else
+			{
+				frct->lock = 1;
+				frac_redraw_ui(frct);
+			}
 		}
-		else
-		{
-			frct->lock = 1;
-			frac_redraw_ui(frct);
-		}
-	}
 	if (button == 4)
-	{
-		frac_zoom_in(frct, x , y);
-	}
+		frac_zoom_in(frct, x, y);
 	if (button == 5)
-	{
-		frac_zoom_out(frct, x , y);
-	}
+		frac_zoom_out(frct, x, y);
 	return (0);
 }

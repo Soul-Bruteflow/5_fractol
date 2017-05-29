@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ship_core.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 11:09:09 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 11:09:20 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
-void ship_core(void)
+void	ship_core(void)
 {
 	t_frct *f;
 
@@ -16,7 +28,7 @@ void ship_core(void)
 	mlx_loop(f->mlx->ptr);
 }
 
-void ship_default(t_frct *f)
+void	ship_default(t_frct *f)
 {
 	f->fractal = SHIP;
 	f->zoom = 0.6;

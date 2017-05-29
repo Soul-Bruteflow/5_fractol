@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractal_error.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 10:49:28 by mvlad             #+#    #+#             */
+/*   Updated: 2017/05/29 10:50:20 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fract.h"
 
 /*
@@ -24,23 +36,5 @@ void			frac_error(int n)
 {
 	if (n == USAGE)
 		error_exit("Usage: ./fractol <name>\nAvalible names:\n1. "
-						   "julia\n2. mandelbrot\n3. ship");
-//	if (n == LINE)
-//		error_exit("Error: One or more lines have wrong length. Exiting.\n");
-//	if (n == COLOR)
-//		error_exit("Error: Wrong color format. Exiting.\n");
-//	if (n == MALLCHECK)
-//		error_exit("Error: Malloc allocation fail. Exiting.\n");
-//	if (n == FCLOSE)
-//		error_exit("Error: File close fail. Exiting.\n");
-//	if (n == FOPEN)
-//		error_exit("Error: File open fail. Exiting.\n");
-//	if (n == GNL)
-//		error_exit("Error: GNL fail. Exiting.\n");
-//	if (n == ZERO)
-//		error_exit("Error: There is ZERO values. Exiting.\n");
-//	if (n == OONE)
-//		error_exit("Error: Bad map. Exiting.\n");
-//	if (n == BIG)
-//		error_exit("Error: Map is too big. Exiting.\n");
+				"julia\n2. mandelbrot\n3. ship");
 }
