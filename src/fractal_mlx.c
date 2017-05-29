@@ -41,8 +41,6 @@ void	frac_mlx_setup(t_frct *frct)
 	frct->mlx->height = HEIGHT;
 	frct->mlx->wcenx = frct->mlx->width / 2;
 	frct->mlx->wceny = frct->mlx->height / 2;
-	frct->mlx->wcurx = frct->mlx->wcenx;
-	frct->mlx->wcury = frct->mlx->wceny;
 	frct->mlx->ptr = mlx_init();
 	if (frct->mlx->ptr == NULL)
 		exit(0);

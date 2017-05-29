@@ -82,7 +82,11 @@ void		threads_core(t_frct *f)
 	t_frct			*args;
 
 	args = (t_frct*)malloc(sizeof(t_frct) * N_OF_TREDS);
+	if (args == NULL)
+		frac_error(MALLCHECK);
 	treds = (pthread_t*)malloc(sizeof(pthread_t) * f->mlx->height);
+	if (treds == NULL)
+		frac_error(MALLCHECK);
 	thread_init_zones(f);
 	thread_copy_args(f, args);
 	if (f->fractal == JULIA)

@@ -16,20 +16,28 @@
 # include <math.h>
 # include <mlx.h>
 # include <pthread.h>
-# include <fcntl.h>
 # include "libft.h"
 # include "get_next_line.h"
 
-# define TRUE 1
-# define FALSE -1
+/*
+** General
+*/
 # define HEIGHT 800
 # define WIDTH 1600
 # define N_OF_TREDS 16
-# define USAGE 0
+
+/*
+** Fractals
+*/
 # define JULIA 0
 # define MANDELBROT 1
 # define SHIP 2
-# define NEWTON 3
+
+/*
+** Errors
+*/
+# define USAGE 0
+# define MALLCHECK 1
 
 /*
 ** Keys
@@ -43,15 +51,7 @@
 # define PLUS 24
 # define MINUS 27
 # define QKEY 12
-# define WKEY 13
 
-/*
-** Minilibx
-** imgx, imgy - upper left corner of image string.
-** wcenx, wceny - x, y center of the window.
-** wcurx, wcury - current x, y center of the window.
-** str_size - size of image string.
-*/
 typedef struct				s_rgba
 {
 	unsigned char			rgba[3];
@@ -71,8 +71,6 @@ typedef struct				s_hsv
 
 typedef struct				s_frct
 {
-	int						fractal;
-	int						color;
 	struct s_mlx			*mlx;
 	struct s_rgba			rgba;
 	struct s_hsv			hsv;
@@ -99,13 +97,19 @@ typedef struct				s_frct
 	int						end_y[N_OF_TREDS];
 	int						start_x[N_OF_TREDS];
 	int						end_x[N_OF_TREDS];
-	int						lock;
-	int						mouse_x;
-	int						mouse_y;
+	char					lock;
 	int						tid;
+	char					fractal;
+	char					color;
 	char					*maxiter_str;
 }							t_frct;
 
+/*
+** Minilibx
+** imgx, imgy - upper left corner of image string.
+** wcenx, wceny - x, y center of the window.
+** str_size - size of image string.
+*/
 typedef struct				s_mlx
 {
 	void					*ptr;
@@ -121,12 +125,10 @@ typedef struct				s_mlx
 	int						imgy;
 	int						wcenx;
 	int						wceny;
-	int						wcurx;
-	int						wcury;
 	size_t					str_size;
 }							t_mlx;
 /*
-** Mlx.
+** Minilibx
 */
 void						frac_mlx_setup(t_frct *frct);
 void						frac_first_draw(t_frct *frct);
@@ -147,9 +149,8 @@ void						frac_error(int n);
 void						frac_ui(t_frct *frct);
 void						frac_redraw_ui(t_frct *frct);
 /*
-** Draw
+** Draw and color
 */
-void						frac_mandelbrot(t_frct *frct);
 void						fractal_put_pixel(t_frct *frct);
 t_rgba						ft_hsv_to_rgb(t_hsv hsv);
 void						hsv_color(t_frct *f);
@@ -169,5 +170,4 @@ void						*mandelbrot_worker(void *arg);
 void						ship_core(void);
 void						ship_default(t_frct *f);
 void						*ship_worker(void *arg);
-t_rgba						mapcolor(int i, double r, double c);
 #endif

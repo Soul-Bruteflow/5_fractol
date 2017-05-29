@@ -25,6 +25,7 @@ OBJ	=	cntrl_keyboard_core.o \
 		fractal_put_pixel.o \
 		fractal_ui.o \
 		ft_hsv_to_rgb.o \
+		hsv_color.o \
 		julia_core.o \
 		julia_worker.o \
 		main.o \
@@ -40,10 +41,8 @@ HEADERS	= $(INC_DIR)
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-MLX		=  -g -L /usr/X11/lib -lmlx -framework OpenGL -framework AppKit
-# MLX		= -lmlx -framework OpenGL -framework AppKit
-# INC_OPT = -I $(LIB_INC) -I $(INC_DIR)
-INC_OPT = -I /usr/X11/include -I $(LIB_INC) -I $(INC_DIR)
+MLX		= -lmlx -framework OpenGL -framework AppKit
+INC_OPT = -I $(LIB_INC) -I $(INC_DIR)
 OUT_OPT = -o
 OBJ_OPT = $< -o $@
 LIB_OPT	= -c

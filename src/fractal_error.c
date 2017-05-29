@@ -37,4 +37,6 @@ void			frac_error(int n)
 	if (n == USAGE)
 		error_exit("Usage: ./fractol <fractal>\nAvalible fractals:\n1. "
 				"julia\n2. mandelbrot\n3. ship");
+	if (n == MALLCHECK)
+		error_exit("Error: Malloc allocation fail. Exiting.\n");
 }
